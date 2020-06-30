@@ -23,7 +23,7 @@ public class File {
 
     @JsonBackReference
     @ManyToOne
-    @JoinColumn(name="folder_id")
+    @JoinColumn(name="folder_id", nullable = false)
     private Folder folder;
 
     public File(String name, String extension, int size, Folder folder){

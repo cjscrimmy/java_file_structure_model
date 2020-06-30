@@ -11,6 +11,7 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+@Component
 public class DataLoader implements ApplicationRunner {
     @Autowired
     FileRepository fileRepository;
@@ -27,6 +28,20 @@ public class DataLoader implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) {
+        User paul = new User("paul");
+        userRepository.save(paul);
 
+
+        Folder work = new Folder("work", paul);
+        paul.addFolder(work);
+        folderRepository.save(work);
+
+        File homework = new File("homework", "doc", 4, work);
+        work.addFile(homework);
+        fileRepository.save(homework);
+
+        File lab = new File("lab", "doc", 5, work);
+        work.addFile(lab);
+        fileRepository.save(lab);
     }
 }
