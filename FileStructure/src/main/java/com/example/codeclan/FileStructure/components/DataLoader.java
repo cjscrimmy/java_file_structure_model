@@ -31,10 +31,16 @@ public class DataLoader implements ApplicationRunner {
         User paul = new User("paul");
         userRepository.save(paul);
 
+        User nicola = new User("nicola");
+        userRepository.save(nicola);
 
         Folder work = new Folder("work", paul);
         paul.addFolder(work);
         folderRepository.save(work);
+
+        Folder holiday = new Folder("holiday", nicola);
+        nicola.addFolder(holiday);
+        folderRepository.save(holiday);
 
         File homework = new File("homework", "doc", 4, work);
         work.addFile(homework);
@@ -43,5 +49,13 @@ public class DataLoader implements ApplicationRunner {
         File lab = new File("lab", "doc", 5, work);
         work.addFile(lab);
         fileRepository.save(lab);
+
+        File holidayPlan = new File("holiday plan", "pdf", 12, holiday);
+        holiday.addFile(holidayPlan);
+        fileRepository.save(holidayPlan);
+
+        File planeTickets = new File("plane tickets", "pdf", 20, holiday);
+        holiday.addFile(planeTickets);
+        fileRepository.save(planeTickets);
     }
 }
