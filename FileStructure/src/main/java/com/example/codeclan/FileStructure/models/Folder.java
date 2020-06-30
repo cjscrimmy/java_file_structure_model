@@ -1,6 +1,8 @@
 package com.example.codeclan.FileStructure.models;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,13 +20,14 @@ public class Folder {
     @OneToMany(mappedBy = "folder")
     private List<File> files;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "user_id", nullable=false)
     private User user;
 
     public Folder(String title, User user) {
         this.title = title;
-        this.files = new ArrayList<>();
+        this.files = new ArrayList<File>();
         this.user = user;
     }
 

@@ -1,5 +1,9 @@
 package com.example.codeclan.FileStructure.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +17,7 @@ public class User {
 
     @Column(name = "name")
     private String name;
-
+    
     @OneToMany(mappedBy = "user")
     private List<Folder> folders;
 
